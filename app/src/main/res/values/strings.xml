@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Project Nasa</string>
+    <string name="authors_1">David Ghiassi</string>
+    <string name="authors_2">Remy Dao</string>
+    <string name="authors_3">Xavier Facqueur</string>
+    <string name="authors_4">Alexandre Vermeulen</string>
 </resources>
