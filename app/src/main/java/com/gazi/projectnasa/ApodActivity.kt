@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,31 +21,39 @@ class ApodActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_apod)
 
-        var baseURL = "https://api.nasa.gov/planetary/apod?api_key=Eql0R2RKwAT3SUvJmXPivXpQeeYgCfUp5DAULXam&start_date="
+        var baseURL = "https://api.nasa.gov/planetary/"
+        val token = "Eql0R2RKwAT3SUvJmXPivXpQeeYgCfUp5DAULXam"
 
         val calendar: Calendar = Calendar.getInstance()
-        calendar.add(Calendar.DAY_OF_YEAR, -7)
+        calendar.add(Calendar.DAY_OF_YEAR, -6)
 
-        val formatter = SimpleDateFormat("yyyy-MM-dd")
-        baseURL += formatter.format(calendar.time)
-        println(baseURL);
+        val date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
 
         val jsonConverter = GsonConverterFactory.create(GsonBuilder().create())
         val retrofit = Retrofit.Builder()
             .baseUrl(baseURL)
             .addConverterFactory(jsonConverter)
             .build()
-/*
-        val service : WSInterface = retrofit.create(WSInterface::class.java)
 
-        val callback : Callback<List<ToDoObject>> = object : Callback<List<ToDoObject>> {
+        val service = retrofit.create(WSInterface::class.java)
+
+        val callback : Callback<List<ApodObject>> = object : Callback<List<ApodObject>> {
             override fun onResponse(
-                call: Call<List<ToDoObject>>,
-                response: Response<List<ToDoObject>>
+                call: Call<List<ApodObject>>,
+                response: Response<List<ApodObject>>
             ) {
                 if (response.isSuccessful) {
-                    response.body()?.let {
-                        Toast.makeText(this@MainActivity, "nb todo = " + it.size, Toast.LENGTH_SHORT).show()
+                    response.body()?.let { data ->
+                        Glide
+                            .with(this@ApodActivity)
+                            .load(data[6].url)
+                            .centerCrop()
+                            .into(findViewById(R.id.apod_activity_main_image))
+
+                        val apodRecyclerView: RecyclerView = findViewById(R.id.recycler_view_apod)
+                        apodRecyclerView.layoutManager = LinearLayoutManager(this@ApodActivity)
+                        apodRecyclerView.adapter = ImageAdapter(data)
+
                     }
                 } else {
                     Log.d("MyWSMessage", "WS Server Error " + response.code().toString())
@@ -50,12 +61,12 @@ class ApodActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<List<ToDoObject>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ApodObject>>, t: Throwable) {
                 Log.d("MyWSMessage", "WS Error " + t.message)
             }
 
         }
 
-        service.getAllTodoList().enqueue(callback)*/
+        service.getAllImages(token, date).enqueue(callback)
     }
 }

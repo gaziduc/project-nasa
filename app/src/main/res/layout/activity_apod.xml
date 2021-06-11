@@ -6,4 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ApodActivity">
 
+    <ImageView
+        android:id="@+id/apod_activity_main_image"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_apod"
+        android:layout_width="409dp"
+        android:layout_height="497dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/apod_activity_main_image" />
 </androidx.constraintlayout.widget.ConstraintLayout>
