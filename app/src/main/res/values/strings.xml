@@ -4,4 +4,10 @@
     <string name="authors_2">Remy Dao</string>
     <string name="authors_3">Xavier Facqueur</string>
     <string name="authors_4">Alexandre Vermeulen</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="home">Home</string>
+    <string name="apod">Apod</string>
+    <string name="mars_rover">Mars Rover</string>
 </resources>
