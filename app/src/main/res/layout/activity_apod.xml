@@ -20,11 +20,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_apod"
-        android:layout_width="409dp"
-        android:layout_height="497dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="32dp"
-        android:scrollbars="vertical"
         android:fadeScrollbars="false"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/apod_activity_main_image" />
@@ -34,7 +35,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/day_picture"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
