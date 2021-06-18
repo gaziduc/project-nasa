@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class ImageAdapter(val data : List<ApodObject>) : RecyclerView.Adapter<ImageAdapter.ImageHolder>() {
+class ApodAdapter(val data : List<ApodObject>) : RecyclerView.Adapter<ApodAdapter.ImageHolder>() {
     class ImageHolder(rowView: View) : RecyclerView.ViewHolder(rowView) {
         val image : ImageView = rowView.findViewById(R.id.apod_image)
         val title : TextView = rowView.findViewById(R.id.apod_item_title)

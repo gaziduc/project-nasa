@@ -11,4 +11,6 @@
     <string name="apod">Apod</string>
     <string name="eonet">EONET</string>
     <string name="mars_rover">Mars Rover</string>
+
+    <string name="day_picture">Picture of the day</string>
 </resources>

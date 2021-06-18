@@ -11,11 +11,11 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_apod_txt_dailypic"
         tools:srcCompat="@drawable/ic_launcher_foreground" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -23,7 +23,19 @@
         android:layout_width="409dp"
         android:layout_height="497dp"
         android:layout_marginTop="32dp"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/apod_activity_main_image" />
+
+    <TextView
+        android:id="@+id/activity_apod_txt_dailypic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/day_picture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

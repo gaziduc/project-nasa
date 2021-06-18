@@ -2,8 +2,8 @@ package com.gazi.projectnasa
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -29,6 +29,8 @@ class ApodActivity : AppCompatActivity() {
 
         val date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
 
+        val apodRecyclerView: RecyclerView = findViewById(R.id.recycler_view_apod)
+
         val jsonConverter = GsonConverterFactory.create(GsonBuilder().create())
         val retrofit = Retrofit.Builder()
             .baseUrl(baseURL)
@@ -36,6 +38,8 @@ class ApodActivity : AppCompatActivity() {
             .build()
 
         val service = retrofit.create(WSInterface::class.java)
+
+        val activity : ApodActivity = this
 
         val callback : Callback<List<ApodObject>> = object : Callback<List<ApodObject>> {
             override fun onResponse(
@@ -45,14 +49,12 @@ class ApodActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     response.body()?.let { data ->
                         Glide
-                            .with(this@ApodActivity)
+                            .with(activity)
                             .load(data[6].url)
                             .centerCrop()
                             .into(findViewById(R.id.apod_activity_main_image))
 
-                        val apodRecyclerView: RecyclerView = findViewById(R.id.recycler_view_apod)
-                        apodRecyclerView.layoutManager = LinearLayoutManager(this@ApodActivity)
-                        apodRecyclerView.adapter = ImageAdapter(data)
+                        apodRecyclerView.adapter = ApodAdapter(data)
 
                     }
                 } else {
@@ -66,6 +68,16 @@ class ApodActivity : AppCompatActivity() {
             }
 
         }
+
+        apodRecyclerView.setHasFixedSize(true);
+
+        apodRecyclerView.layoutManager = LinearLayoutManager(activity,
+            LinearLayoutManager.VERTICAL, false);
+
+        apodRecyclerView.addItemDecoration(
+            DividerItemDecoration(activity,
+            LinearLayoutManager.VERTICAL)
+        );
 
         service.getAllImages(token, date).enqueue(callback)
     }
