@@ -3,7 +3,10 @@ package com.gazi.projectnasa
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,11 +27,19 @@ val nmToKmh = 1.8519984;
 val knotToKmh = 1.852;
 
 class EONETActivity: AppCompatActivity() {
+
+    private lateinit var eventList : RecyclerView;
+    private lateinit var EONETdatas : MutableList<EONETData>;
+    private lateinit var tempEONETdatas : MutableList<EONETData>;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_eonet)
 
-        val eventList : RecyclerView = findViewById(R.id.activity_eonet_event_list);
+        eventList = findViewById(R.id.activity_eonet_event_list);
+        EONETdatas = arrayListOf();
+        tempEONETdatas = arrayListOf();
+
         eventList.setHasFixedSize(true);
 
         eventList.layoutManager = LinearLayoutManager(this@EONETActivity,
@@ -43,7 +54,7 @@ class EONETActivity: AppCompatActivity() {
 
         val baseUrl = "https://eonet.sci.gsfc.nasa.gov/api/v3/";
 
-        val EONETdatas : MutableList<EONETData> = arrayListOf();
+
 
         eventList.adapter = EONETAdapter(this@EONETActivity, EONETdatas);
 
@@ -83,11 +94,10 @@ class EONETActivity: AppCompatActivity() {
                                     parsedDate,
                                     getMagnitude(elem.geometry[0].magnitudeValue, elem.geometry[0].magnitudeUnit)))
                             }
-                            eventList.adapter = EONETAdapter(this@EONETActivity, EONETdatas);
+
+                            tempEONETdatas.addAll(EONETdatas)
+                            eventList.adapter = EONETAdapter(this@EONETActivity, tempEONETdatas);
                             Log.d("eventList", EONETdatas.toString());
-
-
-                            Log.d("onresponse", "adapter")
                         }
                     } else {
                         Log.d("MyWSMessage", "WS Server Error " + response.code().toString())
@@ -104,5 +114,35 @@ class EONETActivity: AppCompatActivity() {
         }
         service.getAllEONETList().enqueue(callback)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.eonet_menu, menu);
+        val item : MenuItem? = menu?.findItem(R.id.action_search);
+        val searchView : SearchView? = item?.actionView as SearchView?;
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                tempEONETdatas.clear();
+                val searchText = newText!!.lowercase(Locale.getDefault())
+                if (searchText.isNotEmpty()) {
+                    EONETdatas.forEach {
+                        if (it.type.lowercase(Locale.getDefault()).contains(searchText)) {
+                            tempEONETdatas.add(it)
+                        }
+                    }
+                    eventList.adapter!!.notifyDataSetChanged()
+                } else {
+                    tempEONETdatas.clear()
+                    tempEONETdatas.addAll(EONETdatas)
+                    eventList.adapter!!.notifyDataSetChanged()
+                }
+                return false;
+            }
+
+        })
+        return super.onCreateOptionsMenu(menu)
     }
 }

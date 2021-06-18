@@ -27,7 +27,7 @@ class EONETAdapter(val context: Context, val data: MutableList<EONETData>): Recy
         holder.typeView.text = currentEvent.type;
         holder.dateView.text = currentEvent.date;
         if (currentEvent.magnitude != null)
-            holder.magnitudeView.text = currentEvent.magnitude.toString();
+            holder.magnitudeView.text = currentEvent.magnitude.toString() + " km/h";
         else
             holder.magnitudeView.visibility = View.GONE;
     }
