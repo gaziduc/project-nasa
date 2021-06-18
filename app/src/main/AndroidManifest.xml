@@ -15,6 +15,7 @@
         android:theme="@style/Theme.ProjectNasa">
         <activity android:name=".ApodActivity"></activity>
         <activity android:name=".EONETActivity"></activity>
+        <activity android:name=".RoverActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

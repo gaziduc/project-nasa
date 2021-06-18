@@ -10,8 +10,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var buttonApod: Button = findViewById(R.id.apod_button);
+        var buttonApod: Button = findViewById(R.id.apod_button)
         var buttonEONET: Button = findViewById(R.id.eonet_button)
+        var buttonRover: Button = findViewById(R.id.rover_button)
 
         buttonApod.setOnClickListener {
             val intent = Intent(this@MainActivity, ApodActivity::class.java)
@@ -20,6 +21,11 @@ class MainActivity : AppCompatActivity() {
 
         buttonEONET.setOnClickListener {
             val intent = Intent(this@MainActivity, EONETActivity::class.java)
+            startActivity(intent);
+        }
+
+        buttonRover.setOnClickListener {
+            val intent = Intent(this@MainActivity, RoverActivity::class.java)
             startActivity(intent);
         }
     }
