@@ -7,50 +7,59 @@
 
     <TextView
         android:id="@+id/activity_eonet_item_txt_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/activity_eonet_item_txt_type"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/activity_eonet_item_txt_type"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/activity_eonet_item_txt_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/activity_eonet_item_txt_name"
-        app:layout_constraintTop_toTopOf="@+id/activity_eonet_item_txt_name" />
-
-    <TextView
-        android:id="@+id/activity_eonet_item_txt_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
+        android:paddingBottom="0dp"
         android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/activity_eonet_item_txt_magnitude"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/activity_eonet_item_txt_date"
         app:layout_constraintTop_toBottomOf="@+id/activity_eonet_item_txt_name" />
 
     <TextView
-        android:id="@+id/activity_eonet_item_txt_magnitude"
-        android:layout_width="wrap_content"
+        android:id="@+id/activity_eonet_item_txt_date"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/activity_eonet_item_txt_date"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_eonet_item_txt_type"
+        app:layout_constraintEnd_toStartOf="@+id/activity_eonet_item_txt_type"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/activity_eonet_item_txt_type" />
+
+    <TextView
+        android:id="@+id/activity_eonet_item_txt_magnitude"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_eonet_item_txt_type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/activity_eonet_item_txt_date"
-        app:layout_constraintTop_toTopOf="@+id/activity_eonet_item_txt_date" />
+        app:layout_constraintStart_toEndOf="@+id/activity_eonet_item_txt_type"
+        app:layout_constraintTop_toTopOf="@+id/activity_eonet_item_txt_type" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -69,23 +69,23 @@
         app:layout_constraintTop_toBottomOf="@+id/main_activity_textview_title" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/rover_button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Button"
+        android:text="@string/mars_rover"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/apod_button" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/eonet_button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Button"
+        android:text="@string/eonet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/rover_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

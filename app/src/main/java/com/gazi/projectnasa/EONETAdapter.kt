@@ -28,6 +28,8 @@ class EONETAdapter(val context: Context, val data: MutableList<EONETData>): Recy
         holder.dateView.text = currentEvent.date;
         if (currentEvent.magnitude != null)
             holder.magnitudeView.text = currentEvent.magnitude.toString();
+        else
+            holder.magnitudeView.visibility = View.GONE;
     }
 
     override fun getItemCount(): Int {

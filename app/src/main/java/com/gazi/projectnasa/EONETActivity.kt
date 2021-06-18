@@ -17,6 +17,8 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 val nmToKmh = 1.8519984;
 val knotToKmh = 1.852;
@@ -56,10 +58,12 @@ class EONETActivity: AppCompatActivity() {
         fun getMagnitude(magnitude : Int?, unit: String?) : Double? {
             if (magnitude == null)
                 return null;
+            val df = DecimalFormat("#.#")
+            df.roundingMode = RoundingMode.FLOOR
             if (unit == "NM^2"){
-                return magnitude * nmToKmh
+                return df.format(magnitude * nmToKmh).toDouble()
             } else if (unit == "kts"){
-                return magnitude * knotToKmh
+                return df.format(magnitude * knotToKmh).toDouble()
             }
             return null;
         }

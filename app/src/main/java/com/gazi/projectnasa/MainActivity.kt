@@ -10,10 +10,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var button: Button = findViewById(R.id.apod_button);
-        button.setOnClickListener {
+        var buttonApod: Button = findViewById(R.id.apod_button);
+        var buttonEONET: Button = findViewById(R.id.eonet_button)
+
+        buttonApod.setOnClickListener {
             val intent = Intent(this@MainActivity, ApodActivity::class.java)
             startActivity(intent)
+        }
+
+        buttonEONET.setOnClickListener {
+            val intent = Intent(this@MainActivity, EONETActivity::class.java)
+            startActivity(intent);
         }
     }
 

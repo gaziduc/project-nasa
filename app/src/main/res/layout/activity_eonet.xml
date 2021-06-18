@@ -7,8 +7,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_eonet_event_list"
-        android:layout_width="958dp"
-        android:layout_height="1705dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_margin="0dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
