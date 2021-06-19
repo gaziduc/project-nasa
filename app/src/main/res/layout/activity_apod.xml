@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/apod_activity_main_image"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
@@ -22,7 +22,7 @@
         android:id="@+id/recycler_view_apod"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:fadeScrollbars="false"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"

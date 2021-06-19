@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonEONET.setOnClickListener {
-            val intent = Intent(this@MainActivity, EONETActivity::class.java)
+            val intent = Intent(this@MainActivity, EonetActivity::class.java)
             startActivity(intent);
         }
 

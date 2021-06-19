@@ -3,8 +3,8 @@ package com.gazi.projectnasa
 import retrofit2.Call
 import retrofit2.http.GET
 
-interface WSEONETInterface {
+interface WSEonetInterface {
 
     @GET("events")
-    fun getAllEONETList() : Call<EONETObject>
+    fun getAllEonetList() : Call<EonetObject>
 }

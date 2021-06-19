@@ -14,7 +14,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
-import java.util.Calendar
+import java.util.*
 
 class ApodActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,11 +25,14 @@ class ApodActivity : AppCompatActivity() {
         val token = "Eql0R2RKwAT3SUvJmXPivXpQeeYgCfUp5DAULXam"
 
         val calendar: Calendar = Calendar.getInstance()
+        //calendar.timeZone = TimeZone.getTimeZone("GMT")
         calendar.add(Calendar.DAY_OF_YEAR, -6)
 
         val date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
 
         val apodRecyclerView: RecyclerView = findViewById(R.id.recycler_view_apod)
+
+        apodRecyclerView.adapter = ApodAdapter(arrayListOf())
 
         val jsonConverter = GsonConverterFactory.create(GsonBuilder().create())
         val retrofit = Retrofit.Builder()
@@ -37,7 +40,7 @@ class ApodActivity : AppCompatActivity() {
             .addConverterFactory(jsonConverter)
             .build()
 
-        val service = retrofit.create(WSInterface::class.java)
+        val service = retrofit.create(WSApodInterface::class.java)
 
         val activity : ApodActivity = this
 
@@ -51,7 +54,7 @@ class ApodActivity : AppCompatActivity() {
                         Glide
                             .with(activity)
                             .load(data[6].url)
-                            .centerCrop()
+                            .fitCenter()
                             .into(findViewById(R.id.apod_activity_main_image))
 
                         apodRecyclerView.adapter = ApodAdapter(data)

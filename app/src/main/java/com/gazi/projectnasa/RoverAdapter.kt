@@ -8,17 +8,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class ApodAdapter(val data : List<ApodObject>) : RecyclerView.Adapter<ApodAdapter.ImageHolder>() {
+class RoverAdapter(val data : List<RoverData>) : RecyclerView.Adapter<RoverAdapter.ImageHolder>() {
     class ImageHolder(rowView: View) : RecyclerView.ViewHolder(rowView) {
-        val image : ImageView = rowView.findViewById(R.id.apod_image)
-        val title : TextView = rowView.findViewById(R.id.apod_item_title)
-        val authors : TextView = rowView.findViewById(R.id.apod_title_copyright)
-        val explanation : TextView = rowView.findViewById(R.id.apod_item_explanation)
+        val image : ImageView = rowView.findViewById(R.id.list_item_rover_img_rover)
+        val name : TextView = rowView.findViewById(R.id.list_item_rover_txt_name)
+        val date : TextView = rowView.findViewById(R.id.list_item_rover_txt_date)
+        val camera : TextView = rowView.findViewById(R.id.list_item_rover_txt_camera)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {
         val viewHolder : ImageHolder
-        val rowView : View = LayoutInflater.from(parent.context).inflate(R.layout.list_item_apod, parent, false);
+        val rowView : View = LayoutInflater.from(parent.context).inflate(R.layout.list_item_rover, parent, false);
         viewHolder = ImageHolder(rowView);
 
         return viewHolder
@@ -26,13 +26,13 @@ class ApodAdapter(val data : List<ApodObject>) : RecyclerView.Adapter<ApodAdapte
 
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
         Glide.with(holder.image.context)
-            .load(data[position].url)
+            .load(data[position].img)
             .fitCenter()
             .into(holder.image)
 
-        holder.title.text = data[position].title
-        holder.authors.text = data[position].copyright
-        holder.explanation.text = data[position].explanation
+        holder.name.text = data[position].name
+        holder.date.text = data[position].date
+        holder.camera.text = data[position].camera
     }
 
     override fun getItemCount(): Int {
