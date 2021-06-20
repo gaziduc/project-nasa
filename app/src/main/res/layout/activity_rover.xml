@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Search"
+        android:text="@string/search_rover"
         app:layout_constraintEnd_toEndOf="@+id/activity_rover_spinner_camera"
         app:layout_constraintStart_toStartOf="@+id/activity_rover_spinner_rover"
         app:layout_constraintTop_toBottomOf="@+id/activity_rover_spinner_rover" />
