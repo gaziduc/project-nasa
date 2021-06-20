@@ -29,9 +29,25 @@ class EonetActivity: AppCompatActivity() {
     private lateinit var EonetDatas : MutableList<EonetData>
     private lateinit var tempEonetDatas : MutableList<EonetData>
 
+    fun getMagnitude(magnitude : Int?, unit: String?) : Double? {
+        if (magnitude == null)
+            return null;
+        val df = DecimalFormat("#.#")
+        df.roundingMode = RoundingMode.FLOOR
+        if (unit == "NM^2"){
+            return df.format(magnitude * nmToKmh).toDouble()
+        } else if (unit == "kts"){
+            return df.format(magnitude * knotToKmh).toDouble()
+        }
+        return null;
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_eonet)
+
+        val loadingScreen : LoadingScreen = LoadingScreen(this@EonetActivity);
+        loadingScreen.startLoadingDialog();
 
         eventList = findViewById(R.id.activity_eonet_event_list);
         EonetDatas = arrayListOf();
@@ -61,19 +77,6 @@ class EonetActivity: AppCompatActivity() {
 
         val service = retrofit.create(WSEonetInterface::class.java)
 
-        fun getMagnitude(magnitude : Int?, unit: String?) : Double? {
-            if (magnitude == null)
-                return null;
-            val df = DecimalFormat("#.#")
-            df.roundingMode = RoundingMode.FLOOR
-            if (unit == "NM^2"){
-                return df.format(magnitude * nmToKmh).toDouble()
-            } else if (unit == "kts"){
-                return df.format(magnitude * knotToKmh).toDouble()
-            }
-            return null;
-        }
-
         val callback: Callback<EonetObject> = object : Callback<EonetObject> {
             override fun onResponse(
                 call: Call<EonetObject>?,
@@ -95,8 +98,8 @@ class EonetActivity: AppCompatActivity() {
                         }
                     } else {
                         Log.d("MyWSMessage", "WS Server Error " + response.code().toString())
-
                     }
+                    loadingScreen.dismissDialog()
                 }
             }
 

@@ -20,6 +20,8 @@ class ApodActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_apod)
+        val loadingScreen : LoadingScreen = LoadingScreen(this@ApodActivity);
+        loadingScreen.startLoadingDialog();
 
         var baseURL = "https://api.nasa.gov/planetary/"
         val token = "Eql0R2RKwAT3SUvJmXPivXpQeeYgCfUp5DAULXam"
@@ -62,8 +64,8 @@ class ApodActivity : AppCompatActivity() {
                     }
                 } else {
                     Log.d("MyWSMessage", "WS Server Error " + response.code().toString())
-
                 }
+                loadingScreen.dismissDialog();
             }
 
             override fun onFailure(call: Call<List<ApodObject>>, t: Throwable) {
