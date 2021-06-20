@@ -15,4 +15,6 @@
     <string name="background_label">Background space</string>
     <string name="day_picture">Picture of the day</string>
     <string name="apod_week_picture">Week picture</string>
+    <string name="last_seven_days_pics">Last seven days pictures</string>
+
 </resources>
