@@ -67,12 +67,12 @@ class RoverActivity : AppCompatActivity()  {
                         response.body()?.let { data ->
                             roversData = data
                             val roverNameList = data.rovers.toSet().map { rover -> rover.name }
-                            val roverSpinnerAdapter = ArrayAdapter(this@RoverActivity, android.R.layout.simple_spinner_dropdown_item, roverNameList)
+                            val roverSpinnerAdapter = ArrayAdapter(this@RoverActivity, R.layout.spinner_item_rover, roverNameList)
                             val roverClickListener = object : AdapterView.OnItemSelectedListener {
                                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                                     val cameraNameList : MutableList<String> = data.rovers[position].cameras.toSet().map { camera -> camera.name } as MutableList<String>
                                     cameraNameList.set(0, "None")
-                                    val cameraSpinnerAdapter = ArrayAdapter(this@RoverActivity, android.R.layout.simple_spinner_dropdown_item, cameraNameList)
+                                    val cameraSpinnerAdapter = ArrayAdapter(this@RoverActivity, R.layout.spinner_item_rover, cameraNameList)
 
                                     cameraSpinner.adapter = cameraSpinnerAdapter
                                 }
@@ -80,7 +80,7 @@ class RoverActivity : AppCompatActivity()  {
                                 override fun onNothingSelected(parent: AdapterView<*>?) {
                                     val cameraNameList : MutableList<String> = data.rovers[0].cameras.toSet().map { camera -> camera.name } as MutableList<String>
                                     cameraNameList.set(0, "None")
-                                    val cameraSpinnerAdapter = ArrayAdapter(this@RoverActivity, android.R.layout.simple_spinner_dropdown_item, cameraNameList)
+                                    val cameraSpinnerAdapter = ArrayAdapter(this@RoverActivity, R.layout.spinner_item_rover, cameraNameList)
 
                                     cameraSpinner.adapter = cameraSpinnerAdapter
                                 }

@@ -27,7 +27,6 @@ class ApodActivity : AppCompatActivity() {
         val token = "Eql0R2RKwAT3SUvJmXPivXpQeeYgCfUp5DAULXam"
 
         val calendar: Calendar = Calendar.getInstance()
-        //calendar.timeZone = TimeZone.getTimeZone("GMT")
         calendar.add(Calendar.DAY_OF_YEAR, -6)
 
         val date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
@@ -55,7 +54,7 @@ class ApodActivity : AppCompatActivity() {
                     response.body()?.let { data ->
                         Glide
                             .with(activity)
-                            .load(data[6].url)
+                            .load(data.last().url)
                             .fitCenter()
                             .into(findViewById(R.id.apod_activity_main_image))
 
